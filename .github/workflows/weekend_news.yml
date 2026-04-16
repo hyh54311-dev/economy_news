@@ -1,0 +1,31 @@
+name: Weekend Economic News Automation
+
+on:
+  schedule:
+      - cron: "30 23 * * 5,6"
+        workflow_dispatch:
+
+        jobs:
+          run-news-script:
+              runs-on: ubuntu-latest
+                  steps:
+                        - name: Checkout code
+                                uses: actions/checkout@v3
+
+                                      - name: Set up Python
+                                              uses: actions/setup-python@v4
+                                                      with:
+                                                                python-version: "3.9"
+
+                                                                      - name: Install dependencies
+                                                                              run: |
+                                                                                        python -m pip install --upgrade pip
+                                                                                                  pip install requests google-generativeai
+
+                                                                                                        - name: Run script
+                                                                                                                env:
+                                                                                                                          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+                                                                                                                                    TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+                                                                                                                                              TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+                                                                                                                                                      run: python cloud_daily_news.py
+                                                                                                                                                      
