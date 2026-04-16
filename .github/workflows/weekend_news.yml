@@ -2,7 +2,7 @@ name: Weekend Economic News Automation
 
 on:
   schedule:
-      - cron: "30 23 * * 5,6"
+      - cron: '30 23 * * 5,6'
         workflow_dispatch:
 
         jobs:
@@ -15,7 +15,7 @@ on:
                                       - name: Set up Python
                                               uses: actions/setup-python@v4
                                                       with:
-                                                                python-version: "3.9"
+                                                                python-version: '3.9'
 
                                                                       - name: Install dependencies
                                                                               run: |
